@@ -1,0 +1,21 @@
+<h1>Browse articles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @articles.each do |article| %>
+      <tr>
+        <td><%= article.title %></td>
+        <td><%= article.description[0, 49] %><%= '...' if article.description.length > 50 %></td>
+        <td>None yet</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
