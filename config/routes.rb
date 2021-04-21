@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   root 'pages#home'
   get 'about', to: 'pages#about'
-  resources :articles, only: [:index, :show, :new, :create, :edit, :update]
+
+  # resources auto creates routes for REST/CRUD to a specific model
+  resources :articles
 end
