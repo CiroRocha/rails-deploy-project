@@ -1,0 +1,28 @@
+<% if @article.errors.any? %>
+  <% @article.errors.full_messages.each do |error| %>
+    <h4 class='backend-error'><%= error %></h4>
+  <% end %>
+<% end %>
+
+<form onsubmit='submitForm(event, "<%= request_method %>", "<%= request_url %>", "<%= article_id %>", "<%= form_authenticity_token %>")'>
+  <label for='title'>Title</label>
+  <br />
+  <input type='text' name='title' />
+  <br />
+  <p class='error-message title'>Title must be 10 characters long.</p>
+  <br />
+  <br />
+  <label for='description'>Description</label>
+  <br />
+  <textarea type='textarea' name='description'></textarea>
+  <p class='error-message description'>Description must be 50 characters long.</p>
+  <br />
+  <button type='submit'>Submit</button>
+</form>
+
+<br />
+<%= link_to 'Cancel', articles_path %>
+
+<script>
+  hideErrorMessages()
+</script>

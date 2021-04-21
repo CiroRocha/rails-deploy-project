@@ -1,84 +1,16 @@
 <h1> Edit article</h1>
 
-<% if @article.errors.any? %>
-  <% @article.errors.full_messages.each do |error| %>
-    <h4 class='backend-error'><%= error %></h4>
-  <% end %>
-<% end %>
-
-<form onsubmit='submitForm(event)'>
-  <label for='title'>Title</label>
-  <br />
-  <input type='text' name='title' />
-  <br />
-  <p class='error-message title'>Title must be 10 characters long.</p>
-  <br />
-  <br />
-  <label for='description'>Description</label>
-  <br />
-  <textarea type='textarea' name='description'></textarea>
-  <p class='error-message description'>Description must be 50 characters long.</p>
-  <br />
-  <button type='submit'>Submit</button>
-</form>
-
-<br />
-<%= link_to 'Cancel', articles_path %>
+<%=
+  render partial: 'partials/article_form',
+  locals: {
+    request_url: '/articles/' + params[:id],
+    request_method: 'PATCH',
+    article_id: params[:id]
+  }
+%>
 
 <script>
-  const allErrorMessages = document.querySelectorAll('.error-message')
-  for (let i = 0; i < allErrorMessages.length; i++) {
-    const errorMessage = allErrorMessages[i]
-    errorMessage.style.display = 'none'
-  }
-
-  const submitForm = async (event) => {
-    event.preventDefault()
-
-    let hasErrors = false
-
-    for (let i = 0; i < allErrorMessages.length; i++) {
-      const errorMessage = allErrorMessages[i]
-      errorMessage.style.display = 'none'
-    }
-
-    const title = document.querySelector('input[name="title"]').value
-    const description = document.querySelector('textarea[name="description"]').value
-
-    if (title.length < 10) {
-      const errorMessage = document.querySelector('.error-message.title')
-      errorMessage.style.display = 'block'
-      hasErrors = true
-    }
-    if (description.length < 50) {
-      const errorMessage = document.querySelector('.error-message.description')
-      errorMessage.style.display = 'block'
-      hasErrors = true
-    }
-
-    if (hasErrors) return
-
-    return await fetch('/articles/<%= params[:id] %>', {
-      method: 'PATCH',
-      body: JSON.stringify({
-        authenticity_token: '<%= form_authenticity_token %>',
-        title: document.querySelector('input[name="title"]').value,
-        description: document.querySelector('textarea[name="description"]').value
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8'
-      }
-    }).then(res => {
-        if (res.status === 200) window.location.href = '/articles/<%= params[:id] %>'
-      })
-  }
-</script>
-
-<script>
-  const titleField = document.querySelector('input[name="title"]')
-  titleField.value = '<%= @article.title %>'
-  const descriptionField = document.querySelector('textarea[name="description"]')
-  descriptionField.value = '<%= @article.description %>'
+  prepopulateFields('<%= @article.title %>', '<%= @article.description %>')
 </script>
 
 <style>

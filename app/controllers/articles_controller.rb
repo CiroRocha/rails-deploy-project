@@ -1,13 +1,29 @@
 class ArticlesController < ApplicationController
 
+  # The line bellow tells Ruby to run "find_article_by_id" method before the methods listed execute.
+  before_action :find_article_by_id, only: [:show, :edit, :update, :destroy]
+
+  private
+
+  def find_article_by_id
+    @article = Article.find(params[:id])
+  end
+
+  def create_article_from_params
+    params.permit(:title, :description)
+    return article_data = {
+      title: params[:title],
+      description: params[:description]
+    }
+  end
+
+  public
+
   def index
     @articles = Article.all
   end
 
   def show
-    # @ means it will be an instance variable, meaning it will be passed down to the view.
-    # /articles/:id
-    @article = Article.find(params[:id])
   end
 
   def new
@@ -15,12 +31,7 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    params.permit(:title, :description)
-    article_data = {
-      title: params[:title],
-      description: params[:description]
-    }
-    @article = Article.new(article_data)
+    @article = Article.new(create_article_from_params)
     if @article.save
       flash[:notice] = "Article saved successfully"
       redirect_to article_path(@article)
@@ -30,12 +41,10 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def update
-    @article = Article.find(params[:id])
-    if @article.update({ title: params[:title], description: params[:description] })
+    if @article.update(create_article_from_params)
       flash[:notice] = "Article updated succesfully"
     else
       return render 'edit'
@@ -43,7 +52,6 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
     redirect_to articles_path
   end
