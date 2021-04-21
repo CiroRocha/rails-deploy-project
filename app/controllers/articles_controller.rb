@@ -29,4 +29,17 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def edit
+    @article = Article.find(params[:id])
+  end
+
+  def update
+    @article = Article.find(params[:id])
+    if @article.update({ title: params[:title], description: params[:description] })
+      flash[:notice] = "Article updated succesfully"
+    else
+      return render 'edit'
+    end
+  end
+
 end
