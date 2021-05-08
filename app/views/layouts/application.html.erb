@@ -7,75 +7,8 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <script>
-      const hideErrorMessages = () => {
-        const allErrorMessages = document.querySelectorAll('.error-message')
-        for (let i = 0; i < allErrorMessages.length; i++) {
-          const errorMessage = allErrorMessages[i]
-          errorMessage.style.display = 'none'
-        }
-      }
-    </script>
-    <script>
-      const prepopulateFields = (title, description) => {
-        const titleField = document.querySelector('input[name="title"]')
-        titleField.value = title
-        const descriptionField = document.querySelector('textarea[name="description"]')
-        descriptionField.value = description
-      }
-    </script>
-    <script>
-      const submitForm = async (
-          event,
-          request_method,
-          request_url,
-          article_id,
-          form_authenticity_token
-        ) => {
-
-        event.preventDefault()
-
-        let hasErrors = false
-        const allErrorMessages = document.querySelectorAll('.error-message')
-
-        for (let i = 0; i < allErrorMessages.length; i++) {
-          const errorMessage = allErrorMessages[i]
-          errorMessage.style.display = 'none'
-        }
-
-        const title = document.querySelector('input[name="title"]').value
-        const description = document.querySelector('textarea[name="description"]').value
-
-        if (title.length < 10) {
-          const errorMessage = document.querySelector('.error-message.title')
-          errorMessage.style.display = 'block'
-          hasErrors = true
-        }
-        if (description.length < 50) {
-          const errorMessage = document.querySelector('.error-message.description')
-          errorMessage.style.display = 'block'
-          hasErrors = true
-        }
-
-        if (hasErrors) return
-
-        return await fetch(request_url, {
-          method: request_method,
-          body: JSON.stringify({
-            authenticity_token: form_authenticity_token,
-            title: document.querySelector('input[name="title"]').value,
-            description: document.querySelector('textarea[name="description"]').value
-          }),
-          headers: {
-            'Content-type': 'application/json; charset=UTF-8'
-          }
-        }).then(res => {
-            if (res.status === 200) window.location.href = '/articles/' + article_id.toString()
-          })
-      }
-    </script>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
