@@ -13,6 +13,7 @@
 
   <body>
     <%= render 'partials/messages' %>
-    <%= yield %>
+
+    <%= react_component('app_wrapper/app_wrapper', { content: yield }) %>
   </body>
 </html>
