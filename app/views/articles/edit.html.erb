@@ -1,17 +1,16 @@
 <h1> Edit article</h1>
 
+<p><%= @article.title %></p>
+
 <%=
   render partial: 'partials/article_form',
   locals: {
     request_url: '/articles/' + params[:id],
     request_method: 'PATCH',
-    article_id: params[:id]
+    prepopulated_title: @article.title,
+    prepopulated_description: @article.description
   }
 %>
-
-<script>
-  prepopulateFields('<%= @article.title %>', '<%= @article.description %>')
-</script>
 
 <style>
   .error-message, .backend-error {
