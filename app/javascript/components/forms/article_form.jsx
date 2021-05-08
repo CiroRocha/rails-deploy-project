@@ -5,7 +5,6 @@ import ErrorMessage from "./helpers/error_message/error_message";
 import { submitForm } from "./helpers/submitForm";
 
 const ArticleForm = ({ request_method, request_url, form_authenticity_token, prepopulated_title, prepopulated_description }) => {
-  console.log('[ prepop ]', prepopulated_title, prepopulated_description);
   const [title, setTitle] = useState(prepopulated_title || '');
   const [description, setDescription] = useState(prepopulated_description || '');
 
@@ -26,7 +25,6 @@ const ArticleForm = ({ request_method, request_url, form_authenticity_token, pre
       }
     }
     const successCallback = (res) => {
-      console.log('[ res ]', res)
       if (res.status === 200) window.location.href = res.url;
     }
     submitForm(data, request_method, request_url, form_authenticity_token, successCallback);
