@@ -4,14 +4,18 @@ export const GlobalStyles = createGlobalStyle`
   html, body {
     font-family: 'Lato', sans-serif;
     margin: 0;
+    padding: 0;
     border: 0;
     box-sizing: border-box;
     font-size: 100%;
     background: ${({ theme }) => theme.background};
     color: ${({ theme }) => theme.foreground};
+    width: 100%;
+    height: 100%;
 
     * {
       margin: 0;
+      padding: 0;
       border: 0;
       box-sizing: border-box;
     }
@@ -32,4 +36,19 @@ export const GlobalStyles = createGlobalStyle`
   p, h6 { font-size: 1rem; }
 
   small, .text_small { font-size: 0.8rem; }
+
+  a {
+    text-decoration: none;
+    font-weight: bold;
+    color: ${({ theme }) => theme.link.common};
+    transition: color 0.15s;
+
+    &:visited {
+      color: ${({ theme }) => theme.link.common};
+    }
+
+    &:hover {
+      color: ${({ theme }) => theme.link.hover};
+    }
+  }
 `

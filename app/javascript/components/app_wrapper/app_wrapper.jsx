@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 
 import { LightTheme } from './themes/light_theme'
 import { DarkTheme } from './themes/dark_theme'
 
 import { GlobalStyles } from './global_styles/global_styles'
+
+import Navbar from '../navbar/navbar'
+
+import LandingHero from '../blocks/landing_hero/landing_hero'
+import ArticlesContainer from "../blocks/articles_container/articles_container";
 
 const checkWindowMatchMedia = () => {
   return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -18,7 +24,12 @@ const getPreferredTheme = () => {
   return LightTheme
 }
 
-const AppWrapper = ({ content }) => {
+const AppWrapper = ({
+    nav_links,
+    new_article_path,
+    articles_path,
+    articles
+  }) => {
   const [ currentTheme, setCurrentTheme ] = useState(getPreferredTheme())
 
   const checkForTheme = () => {
@@ -40,10 +51,19 @@ const AppWrapper = ({ content }) => {
   }, [])
 
   return (
-    <ThemeProvider theme={currentTheme} >
+    <ThemeProvider theme={ currentTheme } >
       <GlobalStyles />
-      <h1>This is the test</h1>
-      <div dangerouslySetInnerHTML={{ __html: content }} ></div>
+      <Navbar nav_links={ nav_links } new_article_path={ new_article_path } />
+      <BrowserRouter>
+        <Switch>
+          <Route path='/' exact >
+            <LandingHero articles_path={ articles_path } />
+          </Route>
+          <Route path={ articles_path } exact >
+            <ArticlesContainer articles={ articles } articles_path={ articles_path } />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </ThemeProvider>
   )
 }

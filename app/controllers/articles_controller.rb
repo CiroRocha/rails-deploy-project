@@ -19,6 +19,10 @@ class ArticlesController < ApplicationController
 
   public
 
+  def all
+    return render json: Article.all
+  end
+
   def index
     @articles = Article.all
   end
