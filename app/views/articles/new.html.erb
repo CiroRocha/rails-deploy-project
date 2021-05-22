@@ -1,59 +1,13 @@
 <h1> Create a new article</h1>
 
-<% if @article.errors.any? %>
-  <% @article.errors.full_messages.each do |error| %>
-    <h4 class='backend-error'><%= error %></h4>
-  <% end %>
-<% end %>
-
-<form onsubmit='submitForm(event)' action='/articles' method='post'>
-  <input type='hidden' name='authenticity_token' value='<%= form_authenticity_token %>'>
-  <label for='title'>Title</label>
-  <br />
-  <input type='text' name='title' />
-  <br />
-  <p class='error-message title'>Title must be 10 characters long.</p>
-  <br />
-  <br />
-  <label for='description'>Description</label>
-  <br />
-  <textarea type='textarea' name='description'></textarea>
-  <p class='error-message description'>Description must be 50 characters long.</p>
-  <br />
-  <button type='submit'>Submit</button>
-</form>
-
-<br />
-<%= link_to 'Cancel', articles_path %>
-
-<script>
-  const allErrorMessages = document.querySelectorAll('.error-message')
-  for (let i = 0; i < allErrorMessages.length; i++) {
-    const errorMessage = allErrorMessages[i]
-    errorMessage.style.display = 'none'
+<%=
+  render partial: 'partials/article_form',
+  locals: {
+    request_url: '/articles',
+    request_method: 'POST',
+    article_id: params[:id]
   }
-
-  const submitForm = (event) => {
-    for (let i = 0; i < allErrorMessages.length; i++) {
-      const errorMessage = allErrorMessages[i]
-      errorMessage.style.display = 'none'
-    }
-
-    const title = document.querySelector('input[name="title"]').value
-    const description = document.querySelector('textarea[name="description"]').value
-
-    if (title.length < 10) {
-      const errorMessage = document.querySelector('.error-message.title')
-      errorMessage.style.display = 'block'
-      event.preventDefault()
-    }
-    if (description.length < 50) {
-      const errorMessage = document.querySelector('.error-message.description')
-      errorMessage.style.display = 'block'
-      event.preventDefault()
-    }
-  }
-</script>
+%>
 
 <style>
   .error-message, .backend-error {
