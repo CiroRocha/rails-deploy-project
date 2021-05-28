@@ -1,0 +1,30 @@
+{
+  "env": {
+    "browser": true,
+    "jest": true,
+    "es6": true
+  },
+  "extends": ["react-app", "eslint:recommended", "plugin:prettier/recommended", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "experimentalObjectRestSpread": true
+    }
+  },
+  "plugins": ["prettier", "import"],
+  "rules": {
+    "prettier/prettier": "error",
+
+    "import/no-anonymous-default-export": [
+      "error",
+      {
+        "allowArray": true,
+        "allowObject": true
+      }
+    ],
+
+    "no-empty": ["error", { "allowEmptyCatch": true }]
+  }
+}
