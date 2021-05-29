@@ -1,13 +1,10 @@
-import styled from 'styled-components';
+import HelloPage from '../containers/HelloPage/HelloPage'
 
 const Main = () => (
-  <div>
-    <Title>My First Next.js Page</Title>
-  </div>
-);
-
-const Title = styled.h1`
-  color: red;
-`;
+  <HelloPage
+    title="Welcome!"
+    secondaryMessage="This application allows you to create articles with a title and description, the only restriction is 10 characters for title and 50 for description. Enjoy :)"
+  />
+)
 
 export default Main
