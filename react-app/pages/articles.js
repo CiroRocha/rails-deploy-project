@@ -1,5 +1,7 @@
 import ArticleCard from '../components/Articles/ArticleCard/ArticleCard'
 
+import { getAllArticles } from '../lib/requestsLib'
+
 const Articles = ({ articlesData }) => {
   return (
     <>
@@ -19,12 +21,11 @@ const Articles = ({ articlesData }) => {
   )
 }
 
-export async function getStaticProps(context) {
-  const res = await fetch(`http://localhost:8000/articles`)
-  const articlesData = await res.json()
+export async function getStaticProps() {
+  const articlesRequest = await getAllArticles()
 
   return {
-    props: { articlesData }, // will be passed to the page component as props
+    props: { articlesData: articlesRequest.data },
   }
 }
 

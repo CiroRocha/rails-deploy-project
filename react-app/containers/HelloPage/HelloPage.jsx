@@ -12,7 +12,7 @@ const HelloPage = ({ title, secondaryMessage }) => {
         <span>{secondaryMessage}</span>
         <div className="link-container">
           <Link href="/articles">See all articles</Link>
-          <Link href="/article/new">Create an articles</Link>
+          <Link href="/article/new">Create an article</Link>
         </div>
       </div>
     </StyledHelloPage>

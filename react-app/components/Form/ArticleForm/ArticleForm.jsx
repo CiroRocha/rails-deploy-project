@@ -3,6 +3,12 @@ import axios from 'axios'
 
 import { useRouter } from 'next/router'
 
+import {
+  getApiArticlesPath,
+  getFrontendArticlesPath,
+  buildFrontendArticlePathWithId,
+} from '../../../lib/requestsLib'
+
 import { StyledArticleForm } from './StyledArticleForm'
 
 import Input from '../Inputs/Input'
@@ -34,13 +40,15 @@ const Form = () => {
     const description = descriptionRef.current.value
     if (titleValidation(title) && descriptionValidation(description)) {
       await axios
-        .post('http://localhost:8000/articles/', {
+        .post(getApiArticlesPath(), {
           title,
           description,
         })
         .then((res) => {
-          if (res.status === 201) {
-            router.push(`/articles/${res.data.id}`)
+          if (res.status === 201 && res.data.id) {
+            router.push(buildFrontendArticlePathWithId(res.data.id))
+          } else {
+            router.push(getFrontendArticlesPath())
           }
         })
         .catch((err) => {
