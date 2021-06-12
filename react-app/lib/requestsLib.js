@@ -9,6 +9,10 @@ export const buildFrontendArticlePathWithId = (id) => {
   return `${FRONTEND_ARTICLE_PATH}${id}`
 }
 
+export const buildFrontendEditArticlePathWithId = (id) => {
+  return `${buildFrontendArticlePathWithId(id)}/edit`
+}
+
 export const buildApiArticlePathWithId = (id) => {
   return `${API_ARTICLES_PATH}${id}`
 }

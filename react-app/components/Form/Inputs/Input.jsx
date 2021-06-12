@@ -6,14 +6,16 @@ import { getFieldComponent, getFieldValidationFunction } from './getComponentInf
 
 const Input = React.forwardRef(
   (
-    { type, label, inputName, formSent, errorMessage, validationFunction, ...rest },
+    { type, label, inputName, formSent, errorMessage, validationFunction, defaultValue, ...rest },
     forwardedRef,
   ) => {
+    const [inputValue, setInputValue] = useState(defaultValue || '')
     const [valid, setValid] = useState(true)
 
     const Input = getFieldComponent(type)
 
     const checkValidity = (value) => {
+      setInputValue(value)
       if (!formSent) {
         return true
       }
@@ -37,6 +39,7 @@ const Input = React.forwardRef(
         <Input
           inputName={inputName}
           ref={forwardedRef}
+          value={inputValue}
           onChange={(event) => checkValidity(event.target.value)}
           {...rest}
         />

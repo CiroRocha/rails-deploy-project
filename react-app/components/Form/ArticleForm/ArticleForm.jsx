@@ -7,13 +7,14 @@ import {
   getApiArticlesPath,
   getFrontendArticlesPath,
   buildFrontendArticlePathWithId,
+  buildApiArticlePathWithId,
 } from '../../../lib/requestsLib'
 
 import { StyledArticleForm } from './StyledArticleForm'
 
 import Input from '../Inputs/Input'
 
-const Form = () => {
+const ArticleForm = ({ title, description, id, isEdit = false }) => {
   const [hasBeenSent, setHasBeenSent] = useState(false)
 
   const [formSendingError, setFormSendingError] = useState(null)
@@ -32,6 +33,14 @@ const Form = () => {
     return value.length >= 50
   }
 
+  const requestMethod = (data) => {
+    if (isEdit) {
+      return axios.put(buildApiArticlePathWithId(id), data)
+    }
+
+    return axios.post(getApiArticlesPath(), data)
+  }
+
   const submitForm = async (event) => {
     event.preventDefault()
     setHasBeenSent(true)
@@ -39,13 +48,12 @@ const Form = () => {
     const title = titleRef.current.value
     const description = descriptionRef.current.value
     if (titleValidation(title) && descriptionValidation(description)) {
-      await axios
-        .post(getApiArticlesPath(), {
-          title,
-          description,
-        })
+      await requestMethod({
+        title,
+        description,
+      })
         .then((res) => {
-          if (res.status === 201 && res.data.id) {
+          if ((res.status === 201 || res.status === 200) && res.data.id) {
             router.push(buildFrontendArticlePathWithId(res.data.id))
           } else {
             router.push(getFrontendArticlesPath())
@@ -78,6 +86,7 @@ const Form = () => {
         formSent={hasBeenSent}
         errorMessage="Title should have 10 or more characters"
         validationFunction={titleValidation}
+        defaultValue={title}
       />
       <Input
         type="textarea"
@@ -87,10 +96,11 @@ const Form = () => {
         formSent={hasBeenSent}
         errorMessage="Description should have 50 or more characters"
         validationFunction={descriptionValidation}
+        defaultValue={description}
       />
       <button type="submit">Submit</button>
     </StyledArticleForm>
   )
 }
 
-export default Form
+export default ArticleForm
