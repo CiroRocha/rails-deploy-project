@@ -12,6 +12,7 @@ import {
 
 import { StyledArticleForm } from './StyledArticleForm'
 
+import CommonButton from '../../Buttons/CommonButton/CommonButton'
 import Input from '../Inputs/Input'
 
 const ArticleForm = ({ title, description, id, isEdit = false }) => {
@@ -98,7 +99,9 @@ const ArticleForm = ({ title, description, id, isEdit = false }) => {
         validationFunction={descriptionValidation}
         defaultValue={description}
       />
-      <button type="submit">Submit</button>
+      <CommonButton backgroundColor="green" type="submit">
+        Submit
+      </CommonButton>
     </StyledArticleForm>
   )
 }

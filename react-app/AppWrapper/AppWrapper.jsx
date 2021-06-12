@@ -6,6 +6,8 @@ import { DarkTheme } from './GlobalStyling/Themes/DarkTheme'
 
 import { GlobalStyles } from './GlobalStyling/GlobalStyles'
 
+import { getFrontendArticlesPath } from '../lib/requestsLib'
+
 import Navbar from './Navbar/Navbar'
 
 const AppWrapper = ({ children }) => {
@@ -44,11 +46,11 @@ const AppWrapper = ({ children }) => {
     <ThemeProvider theme={currentTheme}>
       <GlobalStyles />
       <Navbar
-        links= {[
+        links={[
           {
-            href: '/articles',
-            content: 'All articles'
-          }
+            href: getFrontendArticlesPath(),
+            content: 'All articles',
+          },
         ]}
       />
       {children}

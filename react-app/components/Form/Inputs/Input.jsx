@@ -30,7 +30,7 @@ const Input = React.forwardRef(
     }, [formSent])
 
     return (
-      <StyledInputContainer className={`form-field ${inputName}`}>
+      <StyledInputContainer className={`form-field ${inputName} ${!valid && 'invalid'}`}>
         {label && (
           <label className={`form-field-label ${inputName}`} htmlFor={`input-text-${inputName}`}>
             {label}

@@ -62,4 +62,50 @@ export const GlobalStyles = createGlobalStyle`
     padding: 8px 16px;
     border-radius: 4px;
   }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+
+    &-label {
+      margin-bottom: 10px;
+    }
+
+    input, textarea {
+      width: 100%;
+      border: 2px solid;
+      border-color: ${({ theme }) => theme.foreground};
+      border-radius: 6px;
+      padding: 12px 8px;
+
+      &:focus {
+        border-color: ${({ theme }) => theme.green};
+        outline: 0;
+      }
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+
+      ::-webkit-scrollbar { width: 8px; cursor: default; }
+      ::-webkit-scrollbar-track { background: transparent; cursor: default; }
+      ::-webkit-scrollbar-thumb { background: #CCCCCC; border-radius: 4px; cursor: default; }
+      ::-webkit-scrollbar-thumb:hover { background: #AAAAAA; }
+    }
+
+    .error-message {
+      margin-top: 8px;
+      color: ${({ theme }) => theme.red};
+    }
+
+    &.invalid {
+      input, textarea {
+        border-color: ${({ theme }) => theme.red};
+      }
+    }
+  }
 `
