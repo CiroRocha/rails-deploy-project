@@ -2,10 +2,12 @@ import ArticleForm from '../../../components/Form/ArticleForm/ArticleForm'
 
 import { getAllArticlesIds, getArticleById } from '../../../lib/requestsLib'
 
+import StyledPageTitle from '../../../containers/PageTitle/StyledPageTitle'
+
 const EditArticle = ({ articleData }) => {
   return (
     <>
-      <h1>Create your article</h1>
+      <StyledPageTitle>Edit article</StyledPageTitle>
       <ArticleForm
         title={articleData.title}
         description={articleData.description}

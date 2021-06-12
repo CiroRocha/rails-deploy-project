@@ -3,6 +3,7 @@ import { useState } from 'react'
 import ArticleCard from '../components/Articles/ArticleCard/ArticleCard'
 
 import NoArticlesContainer from '../containers/NoArticlesContainer/NoArticlesContainer'
+import StyledPageTitle from '../containers/PageTitle/StyledPageTitle'
 
 import { getAllArticles } from '../lib/requestsLib'
 
@@ -16,7 +17,7 @@ const Articles = ({ articlesData }) => {
 
   return (
     <>
-      <h1>Articles page</h1>
+      <StyledPageTitle>Articles page</StyledPageTitle>
       <div>
         {articles.length > 0 ? (
           articles.map((article, index) => (

@@ -1,9 +1,11 @@
 import ArticleForm from '../../components/Form/ArticleForm/ArticleForm'
 
+import StyledPageTitle from '../../containers/PageTitle/StyledPageTitle'
+
 const NewArticle = () => {
   return (
     <>
-      <h1>Create your article</h1>
+      <StyledPageTitle>Create your article</StyledPageTitle>
       <ArticleForm />
     </>
   )
