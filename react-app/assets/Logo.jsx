@@ -1,9 +1,15 @@
-import React, { useContext, useState } from 'react'
-import { ThemeContext } from 'styled-components'
+import React, { useState, useEffect } from 'react'
+import { useTheme } from 'styled-components'
 
 const Logo = ({ color }) => {
-  const themeContext = useContext(ThemeContext)
+  const themeContext = useTheme()
   const [finalColor, setFinalColor] = useState(themeContext.logoColor)
+
+  useEffect(() => {
+    if (!color) {
+      setFinalColor(themeContext.logoColor)
+    }
+  }, [themeContext])
 
   const regex = /^#([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/i
   if (regex.test(color)) setFinalColor(color)
