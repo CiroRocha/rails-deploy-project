@@ -59,7 +59,7 @@ export const GlobalStyles = createGlobalStyle`
     font-weight: bold;
     border: 0;
     cursor: pointer;
-    padding: 8px;
+    padding: 8px 16px;
     border-radius: 4px;
   }
 `
