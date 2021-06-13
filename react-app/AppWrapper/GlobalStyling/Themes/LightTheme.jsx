@@ -6,6 +6,7 @@ export const LightTheme = {
   logoColor: '#0E1013',
   green: '#298f22',
   red: '#FF0038',
+  blue: '#007FFF',
   link: '#2A519B',
   buttonColor: '#FCFCFC',
 }

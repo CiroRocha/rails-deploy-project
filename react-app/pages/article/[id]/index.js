@@ -1,44 +1,9 @@
-import Link from 'next/link'
-import { useRouter } from 'next/router'
+import { getAllArticlesIds, getArticleById } from '../../../lib/requestsLib'
 
-import axios from 'axios'
-
-import {
-  getAllArticlesIds,
-  getArticleById,
-  buildFrontendEditArticlePathWithId,
-  buildApiArticlePathWithId,
-  getFrontendArticlesPath,
-} from '../../../lib/requestsLib'
+import ShowArticlePage from '../../../containers/ShowArticlePage/ShowArticlePage'
 
 const ArticlePage = ({ articleData }) => {
-  const router = useRouter()
-
-  return (
-    <div>
-      <div>
-        <div>
-          <h2>{articleData.title}</h2>
-          <small>From {articleData.created_at}</small>
-        </div>
-        <div>
-          <Link href={buildFrontendEditArticlePathWithId(articleData.id)}>
-            <button>Edit</button>
-          </Link>
-          <button
-            onClick={() =>
-              axios
-                .delete(buildApiArticlePathWithId(articleData.id))
-                .then(() => router.push(getFrontendArticlesPath()))
-            }
-          >
-            Delete
-          </button>
-        </div>
-      </div>
-      <p>{articleData.description}</p>
-    </div>
-  )
+  return <ShowArticlePage articleData={articleData} />
 }
 
 export async function getStaticPaths() {

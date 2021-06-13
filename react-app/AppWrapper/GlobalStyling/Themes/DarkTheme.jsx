@@ -6,6 +6,7 @@ export const DarkTheme = {
   logoColor: '#FCFCFC',
   green: '#298f22',
   red: '#FF0038',
+  blue: '#007FFF',
   link: '#469CDA',
   buttonColor: '#FCFCFC',
 }
