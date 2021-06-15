@@ -5,7 +5,7 @@ import { rgba } from 'polished'
 export const StyledArticleCard = styled.div`
   width: 90%;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 auto 60px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,6 +23,8 @@ export const StyledArticleCard = styled.div`
   .article-card-preview-text {
     margin-bottom: 40px;
     text-align: center;
+    word-wrap: break-word;
+    width: 100%;
   }
 
   .article-card-controls button:not(:last-of-type) {

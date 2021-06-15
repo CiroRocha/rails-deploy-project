@@ -7,6 +7,7 @@ export const StyledNavbar = styled.div`
   width: 100%;
   height: 70px;
   padding: 10px 15px;
+  background-color: ${({ theme }) => theme.background};
 
   .content-container {
     width: 100%;

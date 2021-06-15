@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-const FRONTEND_ARTICLE_PATH = 'http://localhost:3000/article/'
-const FRONTEND_NEW_ARTICLE_PATH = 'http://localhost:3000/article/new/'
-const FRONTEND_ARTICLES_PATH = 'http://localhost:3000/articles/'
+const FRONTEND_ARTICLE_PATH = `${process.env.FRONTEND_PATH}/article/`
+const FRONTEND_NEW_ARTICLE_PATH = `${process.env.FRONTEND_PATH}/article/new/`
+const FRONTEND_ARTICLES_PATH = `${process.env.FRONTEND_PATH}/articles/`
 
-const API_ARTICLES_PATH = 'http://localhost:8000/articles/'
+const API_ARTICLES_PATH = `${process.env.BACKEND_PATH}/articles/`
 
 export const getCreateArticlePath = () => FRONTEND_NEW_ARTICLE_PATH
 
