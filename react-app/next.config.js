@@ -15,7 +15,7 @@ module.exports = (phase) => {
   }
 
   if (isProd) {
-    env[FRONTEND_PATH] = 'https://keen-davinci-fd59bf.netlify.app'
+    env[FRONTEND_PATH] = 'https://rails-deploy-project.vercel.app'
     env[BACKEND_PATH] = 'https://afternoon-dawn-91805.herokuapp.com'
   }
 
