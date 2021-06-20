@@ -9,11 +9,11 @@ const API_ARTICLES_PATH = `${process.env.BACKEND_PATH}/articles/`
 export const getCreateArticlePath = () => FRONTEND_NEW_ARTICLE_PATH
 
 export const buildFrontendArticlePathWithId = (id) => {
-  return `${FRONTEND_ARTICLE_PATH}${id}`
+  return `${FRONTEND_ARTICLE_PATH}show?articleId=${id}`
 }
 
 export const buildFrontendEditArticlePathWithId = (id) => {
-  return `${buildFrontendArticlePathWithId(id)}/edit`
+  return `${FRONTEND_ARTICLE_PATH}edit?articleId=${id}`
 }
 
 export const buildApiArticlePathWithId = (id) => {
