@@ -38,7 +38,7 @@ const Articles = ({ articlesData }) => {
   )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const articlesRequest = await getAllArticles()
 
   return {
