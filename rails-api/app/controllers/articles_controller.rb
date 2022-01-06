@@ -29,7 +29,11 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    render json: @article
+    user = @article.user
+    render json: {
+      article: @article,
+      user: user
+  }
   end
 
   def create

@@ -22,21 +22,24 @@ const ShowArticlePage = ({ articleData }) => {
     return <h1>Article not found :(</h1>
   }
 
+  const article = articleData.article
+  const user = articleData.user
+
   return (
     <StyledShowArticlePage>
       <div className="article-header">
         <div className="article-data">
-          <StyledPageTitle padding="20px 0 10px 0">{articleData.title}</StyledPageTitle>
-          <h5>From {articleData.created_at}</h5>
+          <StyledPageTitle padding="20px 0 10px 0">{article.title}</StyledPageTitle>
+          <h5>From {user.username}</h5>
           <div className="article-actions">
-            <Link href={buildFrontendEditArticlePathWithId(articleData.id)}>
+            <Link href={buildFrontendEditArticlePathWithId(article.id)}>
               <CommonButton backgroundColor="blue">Edit</CommonButton>
             </Link>
             <CommonButton
               backgroundColor="red"
               onClick={() =>
                 axios
-                  .delete(buildApiArticlePathWithId(articleData.id))
+                  .delete(buildApiArticlePathWithId(article.id))
                   .then(() => router.push(getFrontendArticlesPath()))
               }
             >
@@ -46,7 +49,7 @@ const ShowArticlePage = ({ articleData }) => {
         </div>
       </div>
       <div className="article-description">
-        <p>{articleData.description}</p>
+        <p>{article.description}</p>
       </div>
     </StyledShowArticlePage>
   )
