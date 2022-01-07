@@ -8,6 +8,8 @@ import { GlobalStyles } from './GlobalStyling/GlobalStyles'
 
 import { getFrontendArticlesPath } from '../lib/requestsLib'
 
+import { UserContext } from '../context/userContext'
+
 import Navbar from './Navbar/Navbar'
 
 const AppWrapper = ({ children }) => {
@@ -43,18 +45,27 @@ const AppWrapper = ({ children }) => {
   }, [])
 
   return (
-    <ThemeProvider theme={currentTheme}>
-      <GlobalStyles />
-      <Navbar
-        links={[
-          {
-            href: getFrontendArticlesPath(),
-            content: 'All articles',
-          },
-        ]}
-      />
-      {children}
-    </ThemeProvider>
+    <UserContext.Provider
+      value={{
+        isLoggedIn: true,
+        id: 1,
+        username: 'TestBoi',
+        email: 'testboi@mail.com',
+      }}
+    >
+      <ThemeProvider theme={currentTheme}>
+        <GlobalStyles />
+        <Navbar
+          links={[
+            {
+              href: getFrontendArticlesPath(),
+              content: 'All articles',
+            },
+          ]}
+        />
+        {children}
+      </ThemeProvider>
+    </UserContext.Provider>
   )
 }
 
