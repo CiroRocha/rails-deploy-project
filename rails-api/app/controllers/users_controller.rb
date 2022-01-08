@@ -15,4 +15,12 @@ class UsersController < ApplicationController
     user.email = params[:email]
     user.save
   end
+
+  def articles
+    params.require(:id)
+    user = User.find(params[:id])
+    return render json: {
+      userArticles: user.articles
+    }
+  end
 end

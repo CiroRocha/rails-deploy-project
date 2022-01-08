@@ -7,20 +7,17 @@ const FRONTEND_ARTICLES_PATH = `${process.env.FRONTEND_PATH}/articles`
 const API_ARTICLES_PATH = `${process.env.BACKEND_PATH}/articles`
 const API_REGISTER_PATH = `${process.env.BACKEND_PATH}/register`
 const API_USER_UPDATE_PATH = `${process.env.BACKEND_PATH}/user/edit`
+const API_USER_ARTICLES_PATH = `${process.env.BACKEND_PATH}/user/articles`
 
 export const getCreateArticlePath = () => FRONTEND_NEW_ARTICLE_PATH
 
-export const buildFrontendArticlePathWithId = (id) => {
-  return `${FRONTEND_ARTICLE_PATH}show?articleId=${id}`
-}
+export const buildFrontendArticlePathWithId = (id) => `${FRONTEND_ARTICLE_PATH}show?articleId=${id}`
 
-export const buildFrontendEditArticlePathWithId = (id) => {
-  return `${FRONTEND_ARTICLE_PATH}edit?articleId=${id}`
-}
+export const buildFrontendEditArticlePathWithId = (id) => `${FRONTEND_ARTICLE_PATH}edit?articleId=${id}`
 
-export const buildApiArticlePathWithId = (id) => {
-  return `${API_ARTICLES_PATH}${id}`
-}
+export const getFrontendArticlesPath = () => FRONTEND_ARTICLES_PATH
+
+export const buildApiArticlePathWithId = (id) => `${API_ARTICLES_PATH}${id}`
 
 export const getApiArticlesPath = () => API_ARTICLES_PATH
 
@@ -28,11 +25,15 @@ export const getApiUserRegisterPath = () => API_REGISTER_PATH
 
 export const getApiUserUpdatePath = (id) => `${API_USER_UPDATE_PATH}/${id}`
 
-export const getFrontendArticlesPath = () => FRONTEND_ARTICLES_PATH
+export const getApiArticlesByUser = (id) => `${API_USER_ARTICLES_PATH}/${id}`
 
 export const getAllArticles = async () => {
   const allArticlesRequest = await axios.get(API_ARTICLES_PATH)
   return allArticlesRequest
+}
+
+export const getArticlesByUserId = async (id) => {
+  return axios.get(getApiArticlesByUser(id))
 }
 
 export const getArticleById = async (id) => {
