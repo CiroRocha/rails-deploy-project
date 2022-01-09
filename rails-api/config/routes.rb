@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   post 'register', to: 'users#new'
   put 'user/edit/:id', to: 'users#edit'
   get 'user/articles/:id', to: 'users#articles'
+  get 'users', to: 'users#index'
 
   # resources auto creates routes for REST/CRUD to a specific model
   resources :articles, except: :new

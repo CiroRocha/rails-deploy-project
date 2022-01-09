@@ -8,6 +8,7 @@ const API_ARTICLES_PATH = `${process.env.BACKEND_PATH}/articles`
 const API_REGISTER_PATH = `${process.env.BACKEND_PATH}/register`
 const API_USER_UPDATE_PATH = `${process.env.BACKEND_PATH}/user/edit`
 const API_USER_ARTICLES_PATH = `${process.env.BACKEND_PATH}/user/articles`
+const API_USERS_PATH = `${process.env.BACKEND_PATH}/users`
 
 export const getCreateArticlePath = () => FRONTEND_NEW_ARTICLE_PATH
 
@@ -20,6 +21,8 @@ export const getFrontendArticlesPath = () => FRONTEND_ARTICLES_PATH
 export const buildApiArticlePathWithId = (id) => `${API_ARTICLES_PATH}${id}`
 
 export const getApiArticlesPath = () => API_ARTICLES_PATH
+
+export const getApiUsersPath = () => API_USERS_PATH
 
 export const getApiUserRegisterPath = () => API_REGISTER_PATH
 
