@@ -26,6 +26,10 @@ gem 'rack-cors'
 # Figaro for ENV variables
 gem 'figaro'
 
+# Pagination
+# https://www.ruby-toolbox.com/projects/kaminari
+gem 'kaminari'
+
 group :development, :test do
   gem 'rspec-rails', '~> 5.0.0'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
