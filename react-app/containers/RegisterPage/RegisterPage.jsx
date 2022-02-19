@@ -1,13 +1,13 @@
 import React from 'react'
-import RegisterForm from '../../components/Form/RegisterForm/RegisterForm'
+import UserForm from '../../components/Form/UserForm/UserForm'
 
-import {StyledRegisterPage} from './StyledRegisterPage'
+import { StyledRegisterPage } from './StyledRegisterPage'
 
 const RegisterPage = () => {
   return (
     <StyledRegisterPage>
       <h1>Register user</h1>
-      <RegisterForm />
+      <UserForm requestType="register" />
     </StyledRegisterPage>
   )
 }

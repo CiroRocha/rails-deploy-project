@@ -10,11 +10,14 @@ const API_USER_UPDATE_PATH = `${process.env.BACKEND_PATH}/user/edit`
 const API_USER_ARTICLES_PATH = `${process.env.BACKEND_PATH}/user/articles`
 const API_USERS_PATH = `${process.env.BACKEND_PATH}/users`
 
+const API_LOGIN_PATH = `${process.env.BACKEND_PATH}/login`
+
 export const getCreateArticlePath = () => FRONTEND_NEW_ARTICLE_PATH
 
 export const buildFrontendArticlePathWithId = (id) => `${FRONTEND_ARTICLE_PATH}show?articleId=${id}`
 
-export const buildFrontendEditArticlePathWithId = (id) => `${FRONTEND_ARTICLE_PATH}edit?articleId=${id}`
+export const buildFrontendEditArticlePathWithId = (id) =>
+  `${FRONTEND_ARTICLE_PATH}edit?articleId=${id}`
 
 export const getFrontendArticlesPath = () => FRONTEND_ARTICLES_PATH
 
@@ -29,6 +32,8 @@ export const getApiUserRegisterPath = () => API_REGISTER_PATH
 export const getApiUserUpdatePath = (id) => `${API_USER_UPDATE_PATH}/${id}`
 
 export const getApiArticlesByUser = (id) => `${API_USER_ARTICLES_PATH}/${id}`
+
+export const getApiSessionNewLogin = () => API_LOGIN_PATH
 
 export const getAllArticles = async () => {
   const allArticlesRequest = await axios.get(API_ARTICLES_PATH)

@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import RegisterForm from '../../components/Form/RegisterForm/RegisterForm'
+import UserForm from '../../components/Form/UserForm/UserForm'
 
 import { UserContext } from '../../context/userContext'
 
@@ -9,10 +9,11 @@ const EditProfile = () => {
   return (
     <div>
       <h1>Edit</h1>
-      <RegisterForm
+      <UserForm
         id={userContext?.id}
         username={userContext?.username}
         email={userContext?.email}
+        requestType="edit"
       />
     </div>
   )
